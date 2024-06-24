@@ -18,7 +18,7 @@ public interface BoardDao {
 	@Insert("insert into board(id,title,content,regdate) values(#{id},#{title},#{content},now())")
 	int insert(BoardDto dto);
 	
-	@Select("select * from board order by regdate desc limit #{srart}, #{count}")
+	@Select("select * from board order by regdate desc limit #{start}, #{count}")
 	List<BoardDto> boardList(Map<String, Object> m);
 	
 	@Select("select count(*) from board")
