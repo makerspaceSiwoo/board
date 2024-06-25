@@ -44,4 +44,11 @@ public class MemService {
 	public void updatePw(String pw, String id) {
 		dao.updatePw(pw, id);
 	}
+	
+	public int updatePassword(MemDto dto) {
+		String id = dto.getId();
+		String name = dto.getName();
+		String password = dto.getPassword();
+		return dao.updatePassword(id, name, password);
+	}
 }

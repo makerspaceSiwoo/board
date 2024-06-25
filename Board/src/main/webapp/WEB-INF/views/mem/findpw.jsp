@@ -61,7 +61,6 @@ $(function(){
 	     dataType:"json"}
 	  ).done(function(data){
 		  console.log(data);
-	     // [인증번호, true/false]
 	     if(eval(data[1])){// 문자열로 옴 -> boolean값 - 메일이 잘 갔는지
 	        pw = data[0];
 	     console.log(pw);

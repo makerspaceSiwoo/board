@@ -20,4 +20,7 @@ public interface MemDao {
 	
 	@Update("update mem set password=#{password} where id=#{id}")
 	int updatePw(@Param("password")String password, @Param("id") String id);
+	
+	@Update("update mem set password=#{password} where id=#{id} and name=#{name}")
+	int updatePassword(@Param("id")String id, @Param("name")String name,@Param("password") String password);
 }

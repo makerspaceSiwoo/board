@@ -114,71 +114,7 @@ public class MemController {
 			return "mem/loginform";
 		}
 	}
-	/////내 코드
-	
-	@GetMapping("/findpw")
-	public String findpw() {
-		return "mem/findpw";
-	}
-	
-	@RequestMapping("/sendmail")
-	@ResponseBody
-	public String[] id_name_ck(@RequestParam("emailAddress") String emailAddress,
-			@RequestParam("id")String id, @RequestParam("name") String name) throws Exception {
-		// 아이디, 이름 확인
-		int check = service.id_name_ck(id, name);
+
 		
-		if(check != 1) {
-			return new String[] {"","false"};
-		}else {// 유저 정보 존재
-			// 메일 전송
-			EmailVO email = new EmailVO();
-			String receiver = emailAddress; // Receiver.
-
-			String subject = "새로운 비번";
-
-			String pw = createNewPassword();
-			
-			String content = "새 비밀 번호는 "+pw+"입니다.";
-			
-			email.setReceiver(receiver);
-			email.setSubject(subject);
-			email.setContent(content);
-			Boolean result = eservice.sendMail(email);
-			service.updatePw(pw, id);
-			return new String[] {pw, result.toString()};
-		}
-	}
-
-	private String createNewPassword() { // 복잡한 인증 번호
-	      char[] chars = new char[] {
-	            '0','1','2','3','4','5','6','7','8','9',
-	            'a','b','c','d','e','f','g','h','i','j',
-	            'k','l','m','n','o','p','q','r','s','t',
-	            'u','v','w','x','y','z'   };
-	      
-	      StringBuffer stringBuffer = new StringBuffer();
-	      SecureRandom secureRandom = new SecureRandom();
-	      secureRandom.setSeed(new Date().getTime());
-
-	      int index = 0;
-	      int length = chars.length;
-	      for(int i = 0; i < 8; i++) {
-	         index = secureRandom.nextInt(length);
-	         
-	         if(index % 2 == 0) {
-	            stringBuffer.append(String.valueOf(chars[index]).toUpperCase());
-	         }else {
-	            stringBuffer.append(String.valueOf(chars[index]).toLowerCase());
-	         }
-	      }
-	      
-	      System.out.println("newPASSWORD : " + stringBuffer.toString());
-	      
-	      return stringBuffer.toString();
-	   }
-		
-		
-	
 	
 }
