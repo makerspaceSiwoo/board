@@ -10,8 +10,8 @@
 <c:if test="${result == false}">
 <p>입력하신 비밀번호는 틀렸습니다.</p>
 </c:if>
-<form method="post" onsubmit="checkVal()" action="delete">
-	<input type="hidden" name="_method" value="delete">
+<form method="post" onsubmit="return checkVal()" action="delete">
+	<input type="hidden" name="_method" value="delete"><!-- delete 요청 방식으로 바꾸기 -->
 	<table><tr><td>password</td>
 	<td><input type="password" name="formpw" id="password"></td></tr>
 	<tr><td colspan="2"><input type="submit" value="탈퇴" ></td></tr>

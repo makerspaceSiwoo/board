@@ -17,7 +17,9 @@
 	</tr>
 	<tr>
 		<td bgcolor="orange" >비밀번호</td>
-		<td><input name="password" type="password" size="10"></td>
+		<td><input name="password" type="password" size="10">
+		<form:errors path="password"/>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
@@ -26,6 +28,16 @@
 		</td>  
 	</tr>
 </table>
-</form:form>	
+</form:form>
+
+<span id="findpw">
+	<a href="/findpw">
+		<button>비밀번호 찾기</button>
+	</a>
+</span>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	
+</script>	
 </body>
 </html>

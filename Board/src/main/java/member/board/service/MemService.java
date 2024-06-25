@@ -32,4 +32,16 @@ public class MemService {
 			return 0;
 		}
 	}
+	public int id_name_ck(String id, String name) {
+		int check = dao.id_name_ck(id, name);
+		if(check == 1) {// 아이디와 이름 값이 맞는 member가 존재
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	public void updatePw(String pw, String id) {
+		dao.updatePw(pw, id);
+	}
 }

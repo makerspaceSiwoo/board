@@ -10,7 +10,7 @@
 <form action="update" method="post" id="updateform">
 <input type="hidden" name="_method" value="put">
 	<table>
-		<tr><td>id</td><td>${user.id}</td></tr>
+		<tr><td>id</td><td>${user.id}</td></tr> <!-- select/input/textarea 아니므로 request에 보내지지 않는다 -->
 		<tr><td>password</td><td><input name="password" type="password" id="password" value="${user.password}"></td></tr>
 		<tr><td>name</td><td><input name="name" id="name" value="${user.name}"></td></tr>
 		<tr><td>birth</td><td><input name="birth" 
