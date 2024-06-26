@@ -32,6 +32,7 @@ public class BoardService {
 	}
 	
 	public BoardDto boardOne(int no) {
+		dao.addReadcount(no);// 조회수 증가
 		return dao.boardOne(no);
 	}
 	
@@ -41,6 +42,20 @@ public class BoardService {
 	
 	public int deleteBoard(int no) {
 		return dao.deleteBoard(no);
+	}
+	public List<BoardDto> search(int searchn, String search, int start){
+		Map<String, Object> m = new HashMap<>();
+		m.put("start", start);
+		m.put("count", 10); // 10개 글 불러오기
+		m.put("searchn", searchn);
+		m.put("search", search);
+		return dao.search(m);
+	}
+	public int countSearch(int searchn, String search) {
+		Map<String,Object> m = new HashMap<>();
+		m.put("searchn", search);
+		m.put("search", search);
+		return dao.countSearch(m);
 	}
 	
 }

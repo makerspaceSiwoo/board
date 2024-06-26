@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,8 @@
 </style>
 </head>
 <body>
-<form method="post" id="writeform">
+<form:form method="post" id="writeform" modelAttribute="board">
+<form:errors element="div"/>
 	<table border="1">
 		<tr>
 			<td class="orange">제목</td>
@@ -30,7 +32,7 @@
 		</tr>
 	</table>
 
-</form>
+</form:form>
 
 </body>
 </html>

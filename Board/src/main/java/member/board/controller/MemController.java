@@ -35,7 +35,7 @@ public class MemController {
 	@Autowired
 	EmailService eservice;
 	
-	@ModelAttribute("user")
+	@ModelAttribute("user") // 언제?
 	public MemDto getDto() {
 		return new MemDto();
 	}

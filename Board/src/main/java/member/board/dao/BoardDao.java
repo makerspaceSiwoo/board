@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
@@ -27,10 +28,18 @@ public interface BoardDao {
 	@Select("select * from board where no=#{no}")
 	BoardDto boardOne(int no);
 	
+	@Update("update board set readcount = readcount+1 where no=#{no}")
+	int addReadcount(int no);
+	
 	@Update("update board set title=#{title}, content=#{content} where no=#{no}")
 	int updateBoard(BoardDto dto);
 	
 	@Delete("delete from board where no=#{no}")
 	int deleteBoard(int no);
+	
+	
+	List<BoardDto> search(Map<String, Object> m);
+	
+	int countSearch(Map<String,Object>m);
 
 }
