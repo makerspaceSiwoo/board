@@ -11,7 +11,7 @@ import member.board.dto.MemDto;
 
 public class LoginIntercepter implements HandlerInterceptor {
 
-	public List<String> loginEssential = Arrays.asList("/board/**"); // board의 모든 하위 파일 (,찍고 다른 파일도 추가할 수 있음)
+	public List<String> loginEssential = Arrays.asList("/board/**", "/comm/**"); // board의 모든 하위 파일 (,찍고 다른 파일도 추가할 수 있음)
 	
 	public List<String> loginInessential = Arrays.asList("/board/list/**","/board/content/**","/board/search/**"); // **은 글 번호가 바뀌어도 받을 수 있게
 

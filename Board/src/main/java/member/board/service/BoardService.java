@@ -53,7 +53,7 @@ public class BoardService {
 	}
 	public int countSearch(int searchn, String search) {
 		Map<String,Object> m = new HashMap<>();
-		m.put("searchn", search);
+		m.put("searchn", searchn);
 		m.put("search", search);
 		return dao.countSearch(m);
 	}

@@ -21,6 +21,25 @@
 	<a href="../list">목록 이동</a> <!-- board/content/no -> board/list -->
 	</td></tr>
 </table>
+
+<!-- comment list -->
+<div id="comm">
+	<c:forEach items="${clist }" var="comm">
+		<div>${comm.id} / <fmt:formatDate value="${comm.regdate }" dateStyle="short"/></div>
+		<div>${comm.content} 
+		<c:if test="${comm.id == user.id }">
+			<button class="dbtn" id="${comm.cno}">삭제</button>
+		</c:if>
+		</div>
+		<hr>
+	</c:forEach>
+	댓글<input name="content" id="content"><button id="add">등록</button>
+
+</div>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(function(){
@@ -31,6 +50,38 @@
 				location.href="/board/list";
 			})
 			return false;// 하이퍼링크 이동 x return false로 막아둠
+		})//click
+		
+		$("#add").click(function(){
+			let id = '${user.id}';
+			let content = $("#content").val();
+			let no = '${dto.no}'; // 글번호
+			if(id==""){
+				alert("먼저 로그인 하세요");
+				location.href="/main";
+			}else if(content==""){
+				alert("내용을 입력하세요");
+				location.reload();	
+			}else{
+				console.log(id,content);
+				$.ajax({url:"/comm/insert",
+						data:"no="+no+"&id="+id+"&content="+content,
+						method:"get"
+				}).done(function(data){
+						location.reload();		
+					});
+			}
+			
+			
+		})//click
+		$("#comm").on("click",".dbtn", function(){
+			let cno = $(this).attr("id");
+			$.ajax({url:"/comm/delete/"+cno,
+				method:"get"
+		}).done(function(){
+				location.reload();		
+			});
+			
 		})//click
 		
 		

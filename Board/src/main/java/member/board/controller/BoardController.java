@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import member.board.dto.BoardDto;
+import member.board.dto.CommDto;
 import member.board.dto.MemDto;
 import member.board.service.BoardService;
+import member.board.service.CommService;
 
 @Controller
 @SessionAttributes("user")
@@ -28,6 +30,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
+	
+	@Autowired
+	CommService c_service;
 	
 	@ModelAttribute("user") // 세션에 user라는 객체가 없으면 만들어줌
 	public MemDto getDto() {
@@ -86,7 +91,8 @@ public class BoardController {
 		BoardDto dto = service.boardOne(no);
 		m.addAttribute("dto", dto);
 		
-		
+		List<CommDto> clist = c_service.selectComm(no);
+		m.addAttribute("clist",clist);
 		return "board/content";
 	}
 
@@ -115,8 +121,13 @@ public class BoardController {
 			@RequestParam("search") String search,
 			@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
 
+		if(search == "") {
+			return "redirect:/board/list";
+		}
+		System.out.println(searchn);
+		
 		int count = service.countSearch(searchn, search);
-
+		System.out.println(count);
 		if(count > 0) {
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page -1) * perPage;
